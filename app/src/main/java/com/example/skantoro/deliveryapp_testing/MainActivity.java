@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         View.OnClickListener {
-    // TEST
+
 
     private static final String TAG = "MainActivity";
 
