@@ -1,0 +1,408 @@
+{
+ "kind": "discovery#restDescription",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/XEOQy888TOcLjzERlEHBdKtPfZ8\"",
+ "discoveryVersion": "v1",
+ "id": "myApi:v1",
+ "name": "myApi",
+ "version": "v1",
+ "description": "This is an API",
+ "ownerDomain": "backend.myapplication.skantoro.example.com",
+ "ownerName": "backend.myapplication.skantoro.example.com",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rest",
+ "baseUrl": "https://myApplicationId.appspot.com/_ah/api/myApi/v1/",
+ "basePath": "/_ah/api/myApi/v1/",
+ "rootUrl": "https://myApplicationId.appspot.com/_ah/api/",
+ "servicePath": "myApi/v1/",
+ "batchPath": "batch",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "Address": {
+   "id": "Address",
+   "type": "object",
+   "properties": {
+    "addressID": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "city": {
+     "type": "string"
+    },
+    "lat": {
+     "type": "number",
+     "format": "double"
+    },
+    "long": {
+     "type": "number",
+     "format": "double"
+    },
+    "state": {
+     "type": "string"
+    },
+    "street": {
+     "type": "string"
+    },
+    "userID": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "zip": {
+     "type": "string"
+    }
+   }
+  },
+  "AddressCollection": {
+   "id": "AddressCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Address"
+     }
+    }
+   }
+  },
+  "Bid": {
+   "id": "Bid",
+   "type": "object",
+   "properties": {
+    "bid": {
+     "type": "number",
+     "format": "double"
+    }
+   }
+  },
+  "Item": {
+   "id": "Item",
+   "type": "object",
+   "properties": {
+    "itemID": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "itemName": {
+     "type": "string"
+    },
+    "orderID": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "pictureLocation": {
+     "type": "string"
+    }
+   }
+  },
+  "ItemCollection": {
+   "id": "ItemCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Item"
+     }
+    }
+   }
+  },
+  "Order": {
+   "id": "Order",
+   "type": "object",
+   "properties": {
+    "addressID": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "bid": {
+     "type": "number",
+     "format": "double"
+    },
+    "estPrice": {
+     "type": "number",
+     "format": "double"
+    },
+    "orderID": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "orderName": {
+     "type": "string"
+    },
+    "status": {
+     "type": "integer",
+     "format": "int32"
+    },
+    "userID": {
+     "type": "integer",
+     "format": "int32"
+    }
+   }
+  },
+  "OrderCollection": {
+   "id": "OrderCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Order"
+     }
+    }
+   }
+  },
+  "User": {
+   "id": "User",
+   "type": "object",
+   "properties": {
+    "firstName": {
+     "type": "string"
+    },
+    "lastName": {
+     "type": "string"
+    },
+    "mobileNumber": {
+     "type": "string"
+    },
+    "role": {
+     "type": "string"
+    },
+    "userID": {
+     "type": "integer",
+     "format": "int32"
+    }
+   }
+  },
+  "UserCollection": {
+   "id": "UserCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "User"
+     }
+    }
+   }
+  }
+ },
+ "methods": {
+  "createNewOrder": {
+   "id": "myApi.createNewOrder",
+   "path": "createNewOrder/{addressID}/{orderName}/{status}/{estPrice}/{bid}/{userID}",
+   "httpMethod": "POST",
+   "parameters": {
+    "addressID": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "path"
+    },
+    "bid": {
+     "type": "number",
+     "required": true,
+     "format": "double",
+     "location": "path"
+    },
+    "estPrice": {
+     "type": "number",
+     "required": true,
+     "format": "double",
+     "location": "path"
+    },
+    "orderName": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    },
+    "status": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "path"
+    },
+    "userID": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "addressID",
+    "orderName",
+    "status",
+    "estPrice",
+    "bid",
+    "userID"
+   ],
+   "response": {
+    "$ref": "OrderCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getAddressesByUser": {
+   "id": "myApi.getAddressesByUser",
+   "path": "addresscollection/{userID}",
+   "httpMethod": "GET",
+   "parameters": {
+    "userID": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "userID"
+   ],
+   "response": {
+    "$ref": "AddressCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getAllItemsByOrder": {
+   "id": "myApi.getAllItemsByOrder",
+   "path": "itemcollection/{orderID}",
+   "httpMethod": "GET",
+   "parameters": {
+    "orderID": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "orderID"
+   ],
+   "response": {
+    "$ref": "ItemCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getAllOrdersByUser": {
+   "id": "myApi.getAllOrdersByUser",
+   "path": "ordercollection/{id}",
+   "httpMethod": "GET",
+   "parameters": {
+    "id": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "response": {
+    "$ref": "OrderCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getUser": {
+   "id": "myApi.getUser",
+   "path": "usercollection",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "UserCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "setNewBidByOrderID": {
+   "id": "myApi.setNewBidByOrderID",
+   "path": "setNewBidByOrderID/{orderID}/{bid}",
+   "httpMethod": "POST",
+   "parameters": {
+    "bid": {
+     "type": "number",
+     "required": true,
+     "format": "double",
+     "location": "path"
+    },
+    "orderID": {
+     "type": "integer",
+     "required": true,
+     "format": "int32",
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "orderID",
+    "bid"
+   ],
+   "response": {
+    "$ref": "Bid"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}
