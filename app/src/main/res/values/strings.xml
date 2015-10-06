@@ -26,4 +26,5 @@
 
     <!-- Content Description for images -->
     <string name="desc_google_icon">Google Logo</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         String email = email_input.getText().toString();
 
         // change this back to email when ready for testing
-        new GetUser().execute("test@gmail.com");
+        new GetUser().execute(email);
     }
 
     private class GetUser
@@ -109,8 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         protected void onPostExecute(final User result) {
-            Log.w("Results", "The results are: " + result);
-            Log.w("First Name", "The Results are: " + result.getFirstName());
+            Log.w("First Name", "The users first name is: " + result.getFirstName());
         }
 
 

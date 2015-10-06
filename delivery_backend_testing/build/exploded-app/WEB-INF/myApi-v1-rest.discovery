@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/XEOQy888TOcLjzERlEHBdKtPfZ8\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/P3YGDDAwN5Gh3a9WrR81Wu_ogQ4\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -210,6 +210,9 @@
    "id": "User",
    "type": "object",
    "properties": {
+    "email": {
+     "type": "string"
+    },
     "firstName": {
      "type": "string"
     },
@@ -225,18 +228,6 @@
     "userID": {
      "type": "integer",
      "format": "int32"
-    }
-   }
-  },
-  "UserCollection": {
-   "id": "UserCollection",
-   "type": "object",
-   "properties": {
-    "items": {
-     "type": "array",
-     "items": {
-      "$ref": "User"
-     }
     }
    }
   }
@@ -366,10 +357,20 @@
   },
   "getUser": {
    "id": "myApi.getUser",
-   "path": "usercollection",
+   "path": "user/{email}",
    "httpMethod": "GET",
+   "parameters": {
+    "email": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "email"
+   ],
    "response": {
-    "$ref": "UserCollection"
+    "$ref": "User"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
