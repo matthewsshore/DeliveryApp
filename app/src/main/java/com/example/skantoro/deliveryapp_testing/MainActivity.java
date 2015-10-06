@@ -11,10 +11,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.skantoro.myapplication.backend.myApi.model.User;
 import com.example.skantoro.myapplication.backend.myApi.MyApi;
 import com.example.skantoro.myapplication.backend.myApi.model.AddressCollection;
 import com.example.skantoro.myapplication.backend.myApi.model.Bid;
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login);
 
         Integer userID = 2;
         Integer orderID = 2;
@@ -54,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
         String orderName = "3rd Order";
 
 
-       // new GetUser().execute();
-        new GetAllOrders().execute(userID);
+       // new GetAllOrders().execute(userID);
        // new GetItemsOfOrder().execute(orderID);
        // new SetNewBid(orderID, bid).execute();
        // new GetAddressesByUserID().execute(userID);
@@ -91,21 +92,32 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void signInUser(View view) {
+        EditText email_input = (EditText) findViewById(R.id.email);
+        String email = email_input.getText().toString();
+
+        // change this back to email when ready for testing
+        new GetUser().execute("test@gmail.com");
+    }
+
     private class GetUser
-            extends AsyncTask<Void, Void, UserCollection> {
+            extends AsyncTask<String, Void, User> {
 
 
         private MyApi myApiService = null;
         private Context context;
 
 
-        protected void onPostExecute(final UserCollection result) {
-            Log.w("Results", "The Results are: " + result);
+        protected void onPostExecute(final User result) {
+            Log.w("Results", "The results are: " + result);
+            Log.w("First Name", "The Results are: " + result.getFirstName());
         }
 
 
         @Override
-        protected UserCollection doInBackground(Void... params) {
+        protected User doInBackground(final String... params) {
+            String email = params[0];
+            Log.w("Email", "Email for SQL: " + email);
             if (myApiService == null) {  // Only do this once
                 MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                         .setRootUrl("https://deliveryapp-testing.appspot.com/_ah/api/");
@@ -118,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
             try {
 
-                return myApiService.getUser().execute();
+                return myApiService.getUser(email).execute();
             } catch (IOException e) {
                 Log.w("EXCEPTION", "exception");
                 String message = e.getMessage();
