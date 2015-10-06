@@ -37,13 +37,13 @@ public class MyEndpoint {
     public String database_url = "jdbc:google:mysql://deliveryapp-testing:testing/DeliveryDatabase?user=root";
 
     @ApiMethod(name = "getUser")
-    public final List<User> getUser() throws ClassNotFoundException, SQLException{
-        List<User> listUser = retrieveUser();
+    public final User getUser(@Named("email") final String email) throws ClassNotFoundException, SQLException{
+        User signedInUser = retrieveUser(email);
 
-        return listUser;
+        return signedInUser;
     }
 
-    private List<User> retrieveUser() throws ClassNotFoundException, SQLException {
+    private User retrieveUser(String email) throws ClassNotFoundException, SQLException {
         String url = null;
 
         if (SystemProperty.environment.value() ==
@@ -61,22 +61,32 @@ public class MyEndpoint {
 
 
         Connection conn1 = DriverManager.getConnection(url);
-        PreparedStatement stmt = conn1.prepareStatement("SELECT * FROM Users");
+        PreparedStatement stmt = conn1.prepareStatement("SELECT * FROM Users where Email = ?");
+        stmt.setString(1, email);
         ResultSet rs = stmt.executeQuery();
 
-        List<User> listUsers = new ArrayList<User>();
+        User signedInUser = new User();
+        if (rs.next()) {
+            signedInUser.setUserID(rs.getInt(1));
+            signedInUser.setFirstName(rs.getString(2));
+            signedInUser.setLastName(rs.getString(3));
+            signedInUser.setMobileNumber(rs.getString(4));
+            signedInUser.setRole(rs.getString(5));
+            signedInUser.setEmail(rs.getString(6));
+        }
 
 
-        while (rs.next()) {
+        /*while (rs.next()) {
             User value = new User();
             value.setUserID(rs.getInt(1));
             value.setFirstName(rs.getString(2));
             value.setLastName(rs.getString(3));
             value.setMobileNumber(rs.getString(4));
             value.setRole(rs.getString(5));
-            listUsers.add(value);
-        }
-        return listUsers;
+            value.setEmail(rs.getString(6));
+            signedInUser.add(value);
+        }*/
+        return signedInUser;
     }
 
     @ApiMethod(name = "getAllOrdersByUser")

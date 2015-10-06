@@ -9,6 +9,7 @@ public class User {
     private String LastName;
     private String MobileNumber;
     private String Role;
+    private String Email;
 
     public Integer getUserID() {
         return UserID;
@@ -48,6 +49,14 @@ public class User {
 
     public void setRole(String role){
         Role = role;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
     }
 
 }
