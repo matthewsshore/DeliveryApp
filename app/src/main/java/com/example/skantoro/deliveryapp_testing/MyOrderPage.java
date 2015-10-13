@@ -38,6 +38,12 @@ import com.google.android.gms.plus.model.people.Person;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+
 /**
  * Created by skantoro on 10/5/15.
  */
@@ -47,8 +53,17 @@ public class MyOrderPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_orders);
 
+        Intent intent = getIntent();
+        String email = intent.getStringExtra("email");
+        String firstName = intent.getStringExtra("firstName");
+        String lastName = intent.getStringExtra("lastName");
+        String role = intent.getStringExtra("role");
+        String mobileNumber = intent.getStringExtra("mobileNumber");
+        Integer userID = intent.getIntExtra("userID", 1);
+
         TextView text = (TextView) findViewById(R.id.info_text);
         text.setTextColor(Color.parseColor("#FFFFFF"));
-        text.setText("Hello my name is Matt");
+        text.setText("Hello my name is " + firstName);
     }
+
 }

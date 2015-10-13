@@ -92,14 +92,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void signInUser(View view) {
-        EditText email_input = (EditText) findViewById(R.id.email);
-        String email = email_input.getText().toString();
-
-        // change this back to email when ready for testing
-        new GetUser().execute(email);
-    }
-
     private class GetUser
             extends AsyncTask<String, Void, User> {
 
