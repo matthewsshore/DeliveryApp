@@ -9,6 +9,9 @@ import android.content.IntentSender;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -61,9 +64,21 @@ public class MyOrderPage extends AppCompatActivity {
         String mobileNumber = intent.getStringExtra("mobileNumber");
         Integer userID = intent.getIntExtra("userID", 1);
 
-        TextView text = (TextView) findViewById(R.id.info_text);
+        /*TextView text = (TextView) findViewById(R.id.info_text);
         text.setTextColor(Color.parseColor("#FFFFFF"));
-        text.setText("Hello my name is " + firstName);
+        text.setText("Hello my name is " + firstName);*/
+
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rvOrders);
+        mRecyclerView.setHasFixedSize(true);
+
+        StaggeredGridLayoutManager gridLayoutManager =
+                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
+
+        OrderAdapter mAdapter = new OrderAdapter();
+        Log.w("Adapter", "Created Adapter");
+        mRecyclerView.setAdapter(mAdapter);
+
     }
 
 }
