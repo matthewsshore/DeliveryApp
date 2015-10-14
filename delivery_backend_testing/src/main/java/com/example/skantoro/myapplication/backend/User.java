@@ -1,5 +1,7 @@
 package com.example.skantoro.myapplication.backend;
 
+import java.io.Serializable;
+
 /**
  * Created by skantoro on 9/22/15.
  */
