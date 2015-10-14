@@ -1,5 +1,6 @@
 package com.example.skantoro.deliveryapp_testing;
 
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +17,7 @@ import java.util.List;
 /**
  * Created by skantoro on 10/13/15.
  */
-public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
-
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
         List<Order> mItems;
 
         public OrderAdapter() {
@@ -74,15 +74,24 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
             return mItems.size();
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder{
 
-            public TextView orderName;
-            public TextView statusText;
+        public TextView orderName;
+        public TextView statusText;
+        public View view;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 orderName = (TextView)itemView.findViewById(R.id.orderName);
                 statusText = (TextView)itemView.findViewById(R.id.status);
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override public void onClick(View v) {
+                      //  Log.w("Clicked", "Clicked: " + getAdapterPosition());
+                        Order clickedOrder = mItems.get(getAdapterPosition());
+                        String orderName = clickedOrder.getOrderName();
+                        Log.w("Order", "Order name clicked: " + orderName);
+                    }
+                });
             }
         }
     }

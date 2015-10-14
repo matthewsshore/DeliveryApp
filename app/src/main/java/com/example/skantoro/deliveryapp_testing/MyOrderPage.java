@@ -76,7 +76,6 @@ public class MyOrderPage extends AppCompatActivity {
         mRecyclerView.setLayoutManager(gridLayoutManager);
 
         OrderAdapter mAdapter = new OrderAdapter();
-        Log.w("Adapter", "Created Adapter");
         mRecyclerView.setAdapter(mAdapter);
 
     }
