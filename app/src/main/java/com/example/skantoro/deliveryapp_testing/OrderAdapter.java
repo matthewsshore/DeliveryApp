@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.skantoro.myapplication.backend.myApi.model.Order;
+import com.example.skantoro.myapplication.backend.myApi.model.OrderCollection;
+import com.example.skantoro.myapplication.backend.myApi.model.UserCollection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,39 +20,20 @@ import java.util.List;
  * Created by skantoro on 10/13/15.
  */
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
-        List<Order> mItems;
+        List<Order> mOrders;
 
-        public OrderAdapter() {
+        public OrderAdapter(OrderCollection result) {
             super();
-            mItems = new ArrayList<Order>();
-            Order nature = new Order();
-            nature.setOrderName("The Great Barrier Reef");
-            nature.setStatus(1);
-            mItems.add(nature);
+            mOrders = new ArrayList<Order>();
+            for (int i = 0; i < result.getItems().size(); i++) {
+                Log.w("ResultLength", "i: " + i);
+                Order addOrder = new Order();
+                addOrder.setOrderName(result.getItems().get(i).getOrderName());
+                addOrder.setStatus(result.getItems().get(i).getStatus());
+                addOrder.setBid(result.getItems().get(i).getBid());
+                mOrders.add(addOrder);
 
-
-            nature = new Order();
-            nature.setOrderName("Order 2");
-            nature.setStatus(2);
-            mItems.add(nature);
-
-            nature = new Order();
-            nature.setOrderName("Order 3");
-            nature.setStatus(3);
-            mItems.add(nature);
-
-
-            nature = new Order();
-            nature.setOrderName("Order 4");
-            nature.setStatus(4);
-            mItems.add(nature);
-
-
-
-            nature = new Order();
-            nature.setOrderName("Order 5");
-            nature.setStatus(5);
-            mItems.add(nature);
+            }
         }
 
         @Override
@@ -64,30 +47,46 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
 
     @Override
         public void onBindViewHolder(ViewHolder viewHolder, int i) {
-            Order nature = mItems.get(i);
-            viewHolder.orderName.setText(nature.getOrderName());
-            viewHolder.statusText.setText(nature.getStatus().toString());
+        String statusText = "Unknown Status";
+        Order addOrder = mOrders.get(i);
+        viewHolder.orderName.setText(addOrder.getOrderName());
+        if (addOrder.getStatus() == 1){
+            statusText = "Out for Bid";
+        }
+        if (addOrder.getStatus() == 2){
+            statusText = "Accepted";
+        }
+        if (addOrder.getStatus() == 3){
+            statusText = "En Route";
+        }
+        if (addOrder.getStatus() == 4){
+            statusText = "Delivery";
+        }
+        viewHolder.statusText.setText(statusText);
+        viewHolder.bidText.setText("$"+addOrder.getBid().toString());
         }
 
         @Override
         public int getItemCount() {
-            return mItems.size();
+            return mOrders.size();
         }
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView orderName;
         public TextView statusText;
+        public TextView bidText;
         public View view;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 orderName = (TextView)itemView.findViewById(R.id.orderName);
                 statusText = (TextView)itemView.findViewById(R.id.status);
+                bidText = (TextView)itemView.findViewById(R.id.bid);
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override public void onClick(View v) {
                       //  Log.w("Clicked", "Clicked: " + getAdapterPosition());
-                        Order clickedOrder = mItems.get(getAdapterPosition());
+                        Order clickedOrder = mOrders.get(getAdapterPosition());
                         String orderName = clickedOrder.getOrderName();
                         Log.w("Order", "Order name clicked: " + orderName);
                     }

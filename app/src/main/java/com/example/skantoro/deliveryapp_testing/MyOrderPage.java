@@ -62,22 +62,65 @@ public class MyOrderPage extends AppCompatActivity {
         String lastName = intent.getStringExtra("lastName");
         String role = intent.getStringExtra("role");
         String mobileNumber = intent.getStringExtra("mobileNumber");
-        Integer userID = intent.getIntExtra("userID", 1);
+        Integer userID = 2; //intent.getIntExtra("userID", 1);
+
+        Log.w("UserID", "UserID: " + userID);
 
         /*TextView text = (TextView) findViewById(R.id.info_text);
         text.setTextColor(Color.parseColor("#FFFFFF"));
         text.setText("Hello my name is " + firstName);*/
 
-        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rvOrders);
-        mRecyclerView.setHasFixedSize(true);
-
-        StaggeredGridLayoutManager gridLayoutManager =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(gridLayoutManager);
-
-        OrderAdapter mAdapter = new OrderAdapter();
-        mRecyclerView.setAdapter(mAdapter);
+        new GetAllOrders().execute(userID);
 
     }
+
+
+    private class GetAllOrders
+            extends AsyncTask<Integer, Void, OrderCollection> {
+
+
+        private MyApi myApiService = null;
+        private Context context;
+
+
+        protected void onPostExecute(final OrderCollection result) {
+            RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rvOrders);
+            mRecyclerView.setHasFixedSize(true);
+
+            StaggeredGridLayoutManager gridLayoutManager =
+                    new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+            mRecyclerView.setLayoutManager(gridLayoutManager);
+
+            OrderAdapter mAdapter = new OrderAdapter(result);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+
+
+        @Override
+        protected OrderCollection doInBackground(final Integer... params) {
+            Integer user = params[0];
+
+            if (myApiService == null) {  // Only do this once
+                MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
+                        .setRootUrl("https://deliveryapp-testing.appspot.com/_ah/api/");
+                // end options for devappserver
+
+                myApiService = builder.build();
+            }
+
+            try {
+
+                return myApiService.getAllOrdersByUser(user).execute();
+            } catch (IOException e) {
+                Log.w("EXCEPTION", "exception");
+                String message = e.getMessage();
+                if (message == null) {
+                    message = e.toString();
+                }
+                return null;
+            }
+        }
+    }
+
 
 }
