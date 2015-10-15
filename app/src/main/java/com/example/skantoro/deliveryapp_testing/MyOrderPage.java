@@ -123,4 +123,11 @@ public class MyOrderPage extends AppCompatActivity {
     }
 
 
+    public void createNewOrder(View view){
+        //Log.w("NewOrder", "Clicked");
+        Intent createOrder = new Intent(this, newOrderPage.class);
+        startActivity(createOrder);
+
+    }
+
 }

@@ -18,16 +18,20 @@
         <activity
             android:name=".MyOrderPage"
             android:label="My Order Page">
+        </activity>
+        <activity
+            android:name=".LogIn"
+            android:label="Sign In">
+        </activity>
+        <activity
+            android:name=".newOrderPage"
+            android:label="Create New Order">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LogIn"
-            android:label="Sign In">
-    </activity>
     </application>
 
 </manifest>
