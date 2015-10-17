@@ -1,23 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="287dp"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/email"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center_horizontal" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:text="Sign In"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
+        android:id="@+id/signIn"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:background="#08AE9E"
         android:onClick="signInUser"/>
-</LinearLayout>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Register"
+        android:id="@+id/register"
+        android:layout_marginBottom="83dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/signIn"
+        android:layout_alignStart="@+id/signIn"
+        android:background="#08AE9E"
+        android:textColor="#fff"
+        android:textSize="20dp"
+        android:onClick="registerUser"/>
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:layout_marginBottom="53dp"
+        android:layout_above="@+id/signIn"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter Email"
+        android:gravity="center_horizontal" />
+
+</RelativeLayout>
+
+
+<!--<EditText
+android:layout_width="287dp"
+android:layout_height="wrap_content"
+android:inputType="textEmailAddress"
+android:ems="10"
+android:id="@+id/email"
+android:layout_marginTop="100dp"
+android:layout_gravity="center_horizontal" />
+
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Sign In"
+android:id="@+id/button"
+android:layout_gravity="center_horizontal"
+android:layout_marginTop="20dp"
+android:onClick="signInUser"/>-->

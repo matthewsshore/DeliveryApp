@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/P3YGDDAwN5Gh3a9WrR81Wu_ogQ4\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/AyyHNcUyIwhgUAvIVXDrf-GcWJI\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -284,6 +284,45 @@
    ],
    "response": {
     "$ref": "OrderCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "createNewUser": {
+   "id": "myApi.createNewUser",
+   "path": "createNewUser/{firstName}/{lastName}/{mobileNumber}/{email}",
+   "httpMethod": "POST",
+   "parameters": {
+    "email": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    },
+    "firstName": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    },
+    "lastName": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    },
+    "mobileNumber": {
+     "type": "string",
+     "required": true,
+     "location": "path"
+    }
+   },
+   "parameterOrder": [
+    "firstName",
+    "lastName",
+    "mobileNumber",
+    "email"
+   ],
+   "response": {
+    "$ref": "User"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

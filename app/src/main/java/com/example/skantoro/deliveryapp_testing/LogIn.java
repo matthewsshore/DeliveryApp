@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.example.skantoro.myapplication.backend.myApi.MyApi;
 import com.example.skantoro.myapplication.backend.myApi.model.User;
@@ -67,9 +68,17 @@ public class LogIn extends AppCompatActivity {
 
 
     protected void onPostExecute(final User result) {
-        // Log.w("First Name", "The users first name is: " + result);
-        goToOrderPage(result);
-
+        Log.w("Size", "result: " + result.getFirstName());
+        String noUser = "Unrecognized email/password.  If you haven't yet, please register below!";
+        Integer duration = Toast.LENGTH_SHORT;
+        Context context = getApplicationContext();
+        if (result.getEmail() == null ){
+            Toast toast = Toast.makeText(context, noUser, duration);
+            toast.show();
+        }
+        else {
+            goToOrderPage(result);
+        }
 
     }
 
@@ -101,4 +110,9 @@ public class LogIn extends AppCompatActivity {
         }
     }
 }
+
+    public void registerUser (View view){
+        Intent intent = new Intent(this, NewProfile.class);
+        startActivity(intent);
+    }
 }

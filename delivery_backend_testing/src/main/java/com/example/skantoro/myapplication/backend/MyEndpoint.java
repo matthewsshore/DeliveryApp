@@ -71,8 +71,7 @@ public class MyEndpoint {
             signedInUser.setFirstName(rs.getString(2));
             signedInUser.setLastName(rs.getString(3));
             signedInUser.setMobileNumber(rs.getString(4));
-            signedInUser.setRole(rs.getString(5));
-            signedInUser.setEmail(rs.getString(6));
+            signedInUser.setEmail(rs.getString(5));
         }
 
 
@@ -295,6 +294,46 @@ public class MyEndpoint {
         stmt.setInt(6, userID);
         stmt.executeUpdate();
     }
+
+    @ApiMethod(name="createNewUser")
+    public final User createNewUser(@Named("firstName") final String firstName, @Named("lastName") final String lastName,
+                                    @Named("mobileNumber") final String mobileNumber, @Named("email") final String email)
+            throws SQLException, ClassNotFoundException {
+        createUserProfile(firstName, lastName, mobileNumber, email);
+
+        User signedInUser = getUser(email);
+
+        return signedInUser;
+    }
+
+    private void createUserProfile(String firstName, String lastName, String mobileNumber, String email) throws ClassNotFoundException, SQLException {
+        String url = null;
+
+        if (SystemProperty.environment.value() ==
+                SystemProperty.Environment.Value.Production) {
+            // Connecting from App Engine.
+            // Load the class that provides the "jdbc:google:mysql://"
+            // prefix.
+            Class.forName("com.mysql.jdbc.GoogleDriver");
+
+            url = database_url;
+        } else {
+            // You may also assign an IP Address from the access control
+            // page and use it to connect from an external network.
+        }
+
+
+        Connection conn1 = DriverManager.getConnection(url);
+        PreparedStatement stmt = conn1.prepareStatement("Insert Into Users (FirstName, LastName, MobileNumber, Email) VALUES (?, ?, ?, ?);");
+        stmt.setString(1, firstName);
+        stmt.setString(2, lastName);
+        stmt.setString(3, mobileNumber);
+        stmt.setString(4, email);
+        stmt.executeUpdate();
+
+    }
+
+
 }
 
 

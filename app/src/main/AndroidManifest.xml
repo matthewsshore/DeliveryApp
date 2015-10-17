@@ -22,15 +22,19 @@
         <activity
             android:name=".LogIn"
             android:label="Sign In">
-        </activity>
-        <activity
-            android:name=".newOrderPage"
-            android:label="Create New Order">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".newOrderPage"
+            android:label="Create New Order">
+        </activity>
+        <activity
+            android:name=".NewProfile"
+            android:label="Create Your Profile" >
         </activity>
     </application>
 

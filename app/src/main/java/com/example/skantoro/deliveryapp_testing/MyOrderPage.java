@@ -62,7 +62,7 @@ public class MyOrderPage extends AppCompatActivity {
         String lastName = intent.getStringExtra("lastName");
         String role = intent.getStringExtra("role");
         String mobileNumber = intent.getStringExtra("mobileNumber");
-        Integer userID = 2; //intent.getIntExtra("userID", 1);
+        Integer userID = intent.getIntExtra("userID", 1);
 
         Log.w("UserID", "UserID: " + userID);
 
@@ -84,15 +84,24 @@ public class MyOrderPage extends AppCompatActivity {
 
 
         protected void onPostExecute(final OrderCollection result) {
-            RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rvOrders);
-            mRecyclerView.setHasFixedSize(true);
+            String noOrders = "You have not created any orders yet!";
+            Integer duration = Toast.LENGTH_SHORT;
+            Context context = getApplicationContext();
+            if (result.getItems() == null ){
+                Toast toast = Toast.makeText(context, noOrders, duration);
+                toast.show();
+            }
+            else {
+                RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.rvOrders);
+                mRecyclerView.setHasFixedSize(true);
 
-            StaggeredGridLayoutManager gridLayoutManager =
-                    new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-            mRecyclerView.setLayoutManager(gridLayoutManager);
+                StaggeredGridLayoutManager gridLayoutManager =
+                        new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+                mRecyclerView.setLayoutManager(gridLayoutManager);
 
-            OrderAdapter mAdapter = new OrderAdapter(result);
-            mRecyclerView.setAdapter(mAdapter);
+                OrderAdapter mAdapter = new OrderAdapter(result);
+                mRecyclerView.setAdapter(mAdapter);
+            }
         }
 
 
