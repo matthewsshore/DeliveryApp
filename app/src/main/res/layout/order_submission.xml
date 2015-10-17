@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/orderName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:hint="Order Name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estimated Cost:"
+        android:id="@+id/cost"
+        android:textSize="20dp"
+        android:layout_marginLeft="33dp"
+        android:layout_marginStart="33dp"
+        android:layout_below="@+id/inputBid"
+        android:layout_alignLeft="@+id/orderName"
+        android:layout_alignStart="@+id/orderName"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/inputCost"
+        android:layout_alignBottom="@+id/cost"
+        android:layout_toRightOf="@+id/cost"
+        android:layout_toEndOf="@+id/cost"
+        android:hint="Bid Cost" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Bid:"
+        android:id="@+id/bid"
+        android:textSize="40dp"
+        android:layout_below="@+id/orderName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="44dp" />
+
+    <EditText
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/inputBid"
+        android:layout_below="@+id/bid"
+        android:layout_alignRight="@+id/bid"
+        android:layout_alignEnd="@+id/bid"
+        android:layout_marginTop="32dp"
+        android:hint="Bid Price" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delivery Address:"
+        android:id="@+id/textView2"
+        android:textSize="40dp"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/cost"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText6"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_alignRight="@+id/textView2"
+        android:layout_alignEnd="@+id/textView2"
+        android:hint="Address" />
+
+</RelativeLayout>

@@ -18,6 +18,10 @@
         <activity
             android:name=".MyOrderPage"
             android:label="My Order Page">
+        </activity>
+        <activity
+            android:name=".LogIn"
+            android:label="Sign In">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,9 +29,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LogIn"
-            android:label="Sign In">
-    </activity>
+            android:name=".newOrderPage"
+            android:label="Create New Order">
+        </activity>
+        <activity
+            android:name=".NewProfile"
+            android:label="Create Your Profile" >
+        </activity>
     </application>
 
 </manifest>

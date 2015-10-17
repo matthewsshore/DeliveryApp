@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/P3YGDDAwN5Gh3a9WrR81Wu_ogQ4\"",
+ "etag": "\"u_zXkMELIlX4ktyNbM2XKD4vK8E/AyyHNcUyIwhgUAvIVXDrf-GcWJI\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -274,6 +274,39 @@
    ],
    "returns": {
     "$ref": "OrderCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "myApi.createNewUser": {
+   "id": "myApi.createNewUser",
+   "parameters": {
+    "email": {
+     "type": "string",
+     "required": true
+    },
+    "firstName": {
+     "type": "string",
+     "required": true
+    },
+    "lastName": {
+     "type": "string",
+     "required": true
+    },
+    "mobileNumber": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "firstName",
+    "lastName",
+    "mobileNumber",
+    "email"
+   ],
+   "returns": {
+    "$ref": "User"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

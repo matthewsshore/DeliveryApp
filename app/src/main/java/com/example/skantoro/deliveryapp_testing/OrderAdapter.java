@@ -26,7 +26,6 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder>{
             super();
             mOrders = new ArrayList<Order>();
             for (int i = 0; i < result.getItems().size(); i++) {
-                Log.w("ResultLength", "i: " + i);
                 Order addOrder = new Order();
                 addOrder.setOrderName(result.getItems().get(i).getOrderName());
                 addOrder.setStatus(result.getItems().get(i).getStatus());
